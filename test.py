@@ -68,6 +68,8 @@ def check_cluster(numNodes, collection, count=0):
     # if queryResults['response']['numFound']:
 
 if __name__ == '__main__':
+  failed = False
+
   config = ConfigParser.RawConfigParser()
   config.read(sys.argv[1])
 
@@ -128,10 +130,8 @@ if __name__ == '__main__':
       print('Checking cluster after ' + str(x+1) + ' of ' + str(numNodes) + ' nodes upgraded')
       check_cluster(numNodes, collection)
   except Exception as e:
-    print("Cluster upgrade failed!")
-    print(e)
+    failed = True
 
-  print("Cluster upgrade successful!")
 
   print('Shutting down Solr')
   subprocess.call([os.path.join(solrV1Path, 'solr'), 'stop', '-all'])
@@ -145,4 +145,11 @@ if __name__ == '__main__':
     shutil.rmtree(nodeName)
   shutil.rmtree('zookeeper_data')
   os.remove('zookeeper.out')
+
+  if failed:
+    print("Cluster upgrade failed!")
+    sys.exit(1)
+  else:
+    print("Cluster upgrade successful!")
+    sys.exit(0)
 
