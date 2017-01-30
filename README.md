@@ -32,6 +32,9 @@ This parses the Solr DOAP file (https://lucene.apache.org/solr/doap.rdf) and gen
 ## Run Test
 `python test.py configs/CONFIG_FILE`
 
+## Run all tests
+`python run_all.py`
+
 ## Generate Results Chart
 This script checks the failures folder and generates the matrix of versions.
 `python generate_results_chart.py > results.md`
