@@ -21,22 +21,24 @@ Following is the summary of the steps that the program follows to test the rolli
 * Require URL for a Solr release >=5.0.0
 * Python Requests (http://docs.python-requests.org/en/master/)
 
-## Install Prerequirements
+### Install Prerequisites
 `pip install -r requirements.txt`
 
-## Generate Configs
+## Running
+### Generate Configs
 This parses the Solr DOAP file (https://lucene.apache.org/solr/doap.rdf) and generates configs for every version >= 5.0.0 to every later version.
 
 `python create_configs.py`
 
-## Run Test
+### Run Test
 `python test.py configs/CONFIG_FILE`
 
-## Run all tests
+### Run all tests
 `python run_all.py`
 
-## Generate Results Chart
+### Generate Results Chart
 This script checks the failures folder and generates the matrix of versions.
+
 `python generate_results_chart.py > results.md`
 
 ## TODO
