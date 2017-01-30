@@ -25,7 +25,10 @@ for v in sorted(upgradeVersions):
 header += '|'
 
 print(header)
-secondRow = ''.join(['-' for x in range(len(header))])
+secondRow = ''
+secondRow += '|' + ''.join(['-' for x in range(len(firstColumn)-1)])
+secondRow += ''.join(['|-------' for x in range(len(upgradeVersions))])
+seconfRow += '|'
 print(secondRow)
 
 lastsv = ''
