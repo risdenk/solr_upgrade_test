@@ -41,4 +41,5 @@ This script checks the failures folder and generates the matrix of versions.
 
 ## TODO
 * Add documentation to work off of a tgz instead of a url
+* Allow tests to run on Windows
 
