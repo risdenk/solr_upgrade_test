@@ -28,7 +28,7 @@ print(header)
 secondRow = ''
 secondRow += '|' + ''.join(['-' for x in range(len(firstColumn)-1)])
 secondRow += ''.join(['|-------' for x in range(len(upgradeVersions))])
-seconfRow += '|'
+secondRow += '|'
 print(secondRow)
 
 lastsv = ''
