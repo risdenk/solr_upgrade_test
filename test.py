@@ -39,7 +39,8 @@ def mkdir(path):
         raise
 
 def check_cluster(numNodes, collection, count=0):
-  if count == 5:
+  # Wait for recovery up to a minute (5 sec * 12)
+  if count == 12:
     raise Exception('Failed cluster check')
 
   for x in range(numNodes):
@@ -99,12 +100,14 @@ if __name__ == '__main__':
     subprocess.check_call([os.path.join(glob.glob(r'zookeeper-*')[0], 'bin', 'zkServer.sh'), 'start'])
 
     print('Starting Solr')
+    shutil.copyfile('log4j.properties', os.path.join('solr-' + v1, 'server', 'resources', 'log4j.properties'))
+    shutil.copyfile('log4j.properties', os.path.join('solr-' + v2, 'server', 'resources', 'log4j.properties'))
     for x in range(numNodes):
       nodeName = 'node' + str(x)
       print('Starting ' + nodeName)
       mkdir(nodeName)
       shutil.copyfile('solr.xml', os.path.join(nodeName, 'solr.xml'))
-      subprocess.check_call([os.path.join(solrV1Path, 'solr'), 'start', '-c', '-z', 'localhost', '-p', str(8983+x), '-s', nodeName])
+      subprocess.check_call([os.path.join(solrV1Path, 'solr'), 'start', '-c', '-z', 'localhost', '-p', str(8983+x), '-s', nodeName, '-Dsolr.log.dir=' + os.path.abspath(nodeName)])
 
     print('Creating collection: ' + collection)
     subprocess.check_call([os.path.join(solrV1Path, 'solr'), 'create', '-c', collection, '-d', 'data_driven_schema_configs', '-s', str(numNodes), '-rf', str(numNodes)])
@@ -125,7 +128,7 @@ if __name__ == '__main__':
       subprocess.check_call([os.path.join(solrV1Path, 'solr'), 'stop', '-p', port])
     
       print('Starting ' + nodeName + ' version ' + v2)
-      subprocess.check_call([os.path.join(solrV2Path, 'solr'), 'start', '-c', '-z', 'localhost', '-p', port, '-s', nodeName])
+      subprocess.check_call([os.path.join(solrV2Path, 'solr'), 'start', '-c', '-z', 'localhost', '-p', port, '-s', nodeName, '-Dsolr.log.dir=' + os.path.abspath(nodeName)])
 
       print('Checking cluster after ' + str(x+1) + ' of ' + str(numNodes) + ' nodes upgraded')
       check_cluster(numNodes, collection)
@@ -139,17 +142,35 @@ if __name__ == '__main__':
 
   print('Shutting down Zookeeper')
   subprocess.call([os.path.join(glob.glob(r'zookeeper-*')[0], 'bin', 'zkServer.sh'), 'stop'])
-  print('Cleaning up')
-  for x in range(numNodes):
-    nodeName = 'node' + str(x)
-    shutil.rmtree(nodeName)
-  shutil.rmtree('zookeeper_data')
-  os.remove('zookeeper.out')
 
   if failed:
-    print("Cluster upgrade failed!")
+    print('Archiving test data')
+    failure_directory = 'failures'
+    if not os.path.exists(failure_directory):
+      os.makedirs(failure_directory)
+
+    archive_directory = os.path.join(failure_directory, v1 + '_' + v2)
+    if os.path.exists(archive_directory):
+      print('Removing previous failure test data: ' + archive_directory)
+      shutil.rmtree(archive_directory)
+    os.makedirs(archive_directory)
+
+    for x in range(numNodes):
+      nodeName = 'node' + str(x)
+      shutil.move(nodeName, archive_directory)
+
+    print('Archived test data to ' + os.path.abspath(archive_directory))
+
+    print('Cluster upgrade failed!')
     sys.exit(1)
   else:
-    print("Cluster upgrade successful!")
+    print('Cleaning up')
+    for x in range(numNodes):
+      nodeName = 'node' + str(x)
+      shutil.rmtree(nodeName)
+    shutil.rmtree('zookeeper_data')
+    os.remove('zookeeper.out')
+
+    print('Cluster upgrade successful!')
     sys.exit(0)
 
