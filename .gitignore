@@ -2,3 +2,6 @@ solr-*
 zookeeper-*
 *.tgz
 *.tar.gz
+node*
+zookeeper.out
+zookeeper_data
