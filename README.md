@@ -37,4 +37,5 @@ This parses the Solr DOAP file (https://lucene.apache.org/solr/doap.rdf) and gen
   * specify log directory (move from server/log)
   * collect logs at end of failed run
 * Add documentation to work off of a tgz instead of a url
+* Auto generate compatibility chart between versions
 
