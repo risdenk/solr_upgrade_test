@@ -33,8 +33,11 @@ for sv in sorted(startVersions):
   row = '| ' + sv + ' '
   row += ''.join([' ' for x in range(len(firstColumn)-len(row))])
   for uv in sorted(upgradeVersions):
-    if (sv, uv) in versionPairs and not os.path.exists(os.path.join('failures', sv + '_' + uv)):
-      row += '| PASS  '
+    if (sv, uv) in versionPairs:
+      if os.path.exists(os.path.join('failures', sv + '_' + uv)):
+        row += '| FAIL  '
+      else:
+        row += '| PASS  '
     else:
       row += '        '
   lastsv = sv
