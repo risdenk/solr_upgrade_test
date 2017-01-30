@@ -43,6 +43,7 @@ for sv in sorted(startVersions):
         row += '| PASS  '
     else:
       row += '|       '
+  row += '|'
   lastsv = sv
   print(row)
 
