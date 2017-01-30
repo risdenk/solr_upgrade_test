@@ -10,11 +10,12 @@ Following is the summary of the steps that the program follows to test the rolli
 3. Start Solr nodes
 4. Create a Test collection
 5. Insert a set of documents
-6. Stop each node one by one, upgrade a single node, and start node again
-7. Check if the cluster status has the upgraded node
-8. Check if all the documents are available from the collection
-9. If 7 and 8 pass, the program repeats 6-8 for each node
-10. If all nodes are updated successfully, identifies the test as successful. Upon failure of either 6 or 7, the program declares the test as failed.
+6. Check the cluster status
+7. Stop each node one by one, upgrade a single node, and start node again
+8. Check if the cluster status has the upgraded node
+9. Check if all the documents are available from the collection
+10. If 7 and 8 pass, the program repeats 6-8 for each node
+11. If all nodes are updated successfully, identifies the test as successful. Upon failure of either 6 or 7, the program declares the test as failed.
 12. Shutdown the nodes and cleanup
 
 ## Requirements
