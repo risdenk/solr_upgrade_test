@@ -96,8 +96,8 @@ if __name__ == '__main__':
   try:
     print('Starting ZK')
     mkdir('zookeeper_data')
-    shutil.copyfile('zoo.cfg', os.path.join(glob.glob(r'zookeeper-*')[0], 'conf', 'zoo.cfg'))
-    subprocess.check_call([os.path.join(glob.glob(r'zookeeper-*')[0], 'bin', 'zkServer.sh'), 'start'])
+    shutil.copyfile('zoo.cfg', os.path.join(glob.glob(r'zookeeper-*/')[0], 'conf', 'zoo.cfg'))
+    subprocess.check_call([os.path.join(glob.glob(r'zookeeper-*/')[0], 'bin', 'zkServer.sh'), 'start'])
 
     print('Starting Solr')
     shutil.copyfile('log4j.properties', os.path.join('solr-' + v1, 'server', 'resources', 'log4j.properties'))
@@ -141,7 +141,7 @@ if __name__ == '__main__':
   subprocess.call([os.path.join(solrV2Path, 'solr'), 'stop', '-all'])
 
   print('Shutting down Zookeeper')
-  subprocess.call([os.path.join(glob.glob(r'zookeeper-*')[0], 'bin', 'zkServer.sh'), 'stop'])
+  subprocess.call([os.path.join(glob.glob(r'zookeeper-*/')[0], 'bin', 'zkServer.sh'), 'stop'])
 
   if failed:
     print('Archiving test data')
