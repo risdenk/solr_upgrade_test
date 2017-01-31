@@ -5,6 +5,9 @@ addons:
   apt:
     packages:
     - oracle-java8-installer
-install: "pip install -r requirements.txt"
-script: "python test.py configs/nightly.ini"
+install:
+  - pip install -r requirements.txt
+  - python generate_nightly_config.py
+script:
+  - bash -c "python test.py configs/config_*_nightly.ini"
 
