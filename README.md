@@ -37,6 +37,13 @@ This parses the Solr DOAP file (https://lucene.apache.org/solr/doap.rdf) and gen
 ### Run all tests
 `python run_all.py`
 
+### Run nightly test
+```bash
+python generate_nightly_config.py
+bash -c "python test.py configs/config_*_nightly.ini"
+rm configs/config_*_nightly.ini
+```
+
 ### Generate Results Chart
 This script checks the failures folder and generates the matrix of versions.
 

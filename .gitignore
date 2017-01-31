@@ -6,3 +6,4 @@ failures
 node*
 zookeeper.out
 zookeeper_data
+configs/config_*_nightly.ini
