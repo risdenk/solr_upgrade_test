@@ -7,3 +7,5 @@ node*
 zookeeper.out
 zookeeper_data
 configs/config_*_nightly.ini
+configs/config_*_master.ini
+configs/config_*_6.x.ini

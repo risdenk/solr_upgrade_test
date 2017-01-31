@@ -10,7 +10,8 @@ install:
   - pip install --user -r requirements.txt
   - python generate_nightly_config.py
 env:
-  - CONFIG=config_*_nightly.ini
+  - CONFIG=config_*_master.ini
+  - CONFIG=config_*_6.x.ini
 script:
   - python test.py configs/$CONFIG
 
