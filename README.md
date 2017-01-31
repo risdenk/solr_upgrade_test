@@ -5,6 +5,10 @@ Based on the work from https://github.com/viveknarang/solr-upgrade-tests
 ### Results
 [results.md](results.md)
 
+Jenkins artifact build testing:
+
+* [https://travis-ci.org/risdenk/solr_upgrade_test](https://travis-ci.org/risdenk/solr_upgrade_test)
+
 ### Steps
 Following is the summary of the steps that the program follows to test the rolling upgrade
 
