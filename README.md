@@ -2,6 +2,9 @@
 ## Overview
 Based on the work from https://github.com/viveknarang/solr-upgrade-tests
 
+### Results
+[results.md](results.md)
+
 ### Steps
 Following is the summary of the steps that the program follows to test the rolling upgrade
 
