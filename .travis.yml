@@ -9,6 +9,9 @@ install:
   - export PATH=$HOME/.local/bin:$PATH
   - pip install --user -r requirements.txt
   - python generate_nightly_config.py
+env:
+  - CONFIG=config_*_nightly.ini
+  - CONFIG=config_5.0.0_6.4.0.ini
 script:
-  - bash -c "python test.py configs/config_*_nightly.ini"
+  - python test.py configs/$CONFIG
 
