@@ -13,7 +13,7 @@ for name,version in versions.iteritems():
   r = requests.get(buildBaseUrl + '/buildNumber')
   nightlyBuildNumber = r.text
   print(nightlyBuildNumber)
-  zkUrl = 'http://mirrors.koehn.com/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz'
+  zkUrl = 'http://www.trieuvan.com/apache/zookeeper/stable/zookeeper-3.4.9.tar.gz'
   v1 = '6.4.2'
   v2 = version + '-' + nightlyBuildNumber
 
@@ -24,7 +24,7 @@ for name,version in versions.iteritems():
   config.set('solr', 'numNodes', '2')
   config.set('solr', 'collection', 'testupgrade')
   config.set('solr', 'v1', v1)
-  v1url = 'http://mirrors.koehn.com/apache/lucene/solr/' + v1 + '/solr-' + v1 + '.tgz'
+  v1url = 'http://www.trieuvan.com/apache/lucene/solr/' + v1 + '/solr-' + v1 + '.tgz'
   config.set('solr', 'v1url', v1url)
   config.set('solr', 'v2', v2)
   v2url = buildBaseUrl + '/artifact/solr/package/solr-' + v2 + '.tgz'
