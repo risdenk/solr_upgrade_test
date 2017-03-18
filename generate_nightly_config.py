@@ -5,7 +5,7 @@ import os
 import os.path
 import requests
 
-versions = {'master':'7.0.0', '6.x':'6.5.0'}
+versions = {'master':'7.0.0', '6.x':'6.6.0'}
 
 for name,version in versions.iteritems():
   buildBaseUrl = 'https://builds.apache.org/job/Solr-Artifacts-' + name  + '/lastSuccessfulBuild'
