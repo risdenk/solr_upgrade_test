@@ -14,7 +14,7 @@ for name,version in versions.iteritems():
   nightlyBuildNumber = r.text
   print(nightlyBuildNumber)
   zkUrl = 'http://www.trieuvan.com/apache/zookeeper/stable/zookeeper-3.4.9.tar.gz'
-  v1 = '6.4.2'
+  v1 = '6.5.0'
   v2 = version + '-' + nightlyBuildNumber
 
   config = ConfigParser.RawConfigParser()
