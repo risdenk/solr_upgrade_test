@@ -27,7 +27,7 @@ directory = 'configs'
 if not os.path.exists(directory):
   os.makedirs(directory)
 
-zkUrl = 'https://archive.apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz'
+zkUrl = 'https://archive.apache.org/dist/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz'
 
 for (v1,v2) in version_pairs:
   config = ConfigParser.RawConfigParser()

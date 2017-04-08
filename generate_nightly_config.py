@@ -13,7 +13,7 @@ for name,version in versions.iteritems():
   r = requests.get(buildBaseUrl + '/buildNumber')
   nightlyBuildNumber = r.text
   print(nightlyBuildNumber)
-  zkUrl = 'http://www.trieuvan.com/apache/zookeeper/stable/zookeeper-3.4.9.tar.gz'
+  zkUrl = 'http://www.trieuvan.com/apache/zookeeper/stable/zookeeper-3.4.10.tar.gz'
   v1 = '6.5.0'
   v2 = version + '-' + nightlyBuildNumber
 
